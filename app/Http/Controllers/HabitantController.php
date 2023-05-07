@@ -30,12 +30,13 @@ class HabitantController extends Controller
      */
     public function store(Request $request)
     {
-        $habitant = new Habitant();
-        $habitant->cin = $request->input('cin');
-        $habitant->nom = $request->input('nom');
-        $habitant->prenom = $request->input('prenom');
-        $habitant->ville_id = $request->input('ville_id');
-        $habitant->save();
+        Habitant::create([
+            'cin' => $request->input('cin'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'ville_id' => $request->input('ville_id')
+        ]);
+
         return redirect()->route('habitants.index')->with('success', 'Habitant ajouté avec succès');
     }
 
@@ -62,12 +63,14 @@ class HabitantController extends Controller
     public function update(Request $request, $id)
     {
         $habitant = Habitant::find($id);
-        $habitant->cin = $request->input('cin');
-        $habitant->nom = $request->input('nom');
-        $habitant->prénom = $request->input('prénom');
-        $habitant->ville_id = $request->input('ville_id');
-        // Ajoutez ici le code pour gérer l'upload de la photo
-        $habitant->save();
+
+        $habitant->update([
+            'cin' => $request->input('cin'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'ville_id' => $request->input('ville_id')
+        ]);
+
         return redirect()->route('habitants.index')->with('success', 'Habitant modifié avec succès');
     }
 

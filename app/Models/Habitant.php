@@ -9,6 +9,10 @@ class Habitant extends Model
 {
     use HasFactory;
 
-
-    
+    protected $fillable = [
+        'cin',
+        'nom',
+        'prenom',
+        'ville_id'
+    ];
 }
